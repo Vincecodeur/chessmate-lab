@@ -44,15 +44,21 @@ Certaines erreurs (ex. promesse non attendue) ne sont détectables que par l'ana
 
 ## 5. Vérification automatique (GitHub Actions)
 
-À chaque envoi sur une branche et à chaque pull request :
+Deux vérifications (DEC-047) :
 
-1. installation des dépendances ;
+**`verify`** (`.github/workflows/ci.yml`), à chaque pull request et à chaque envoi sur `main` :
+
+1. installation des dépendances (`npm ci`) ;
 2. Prettier (vérification), ESLint, TypeScript ;
-3. tests Vitest + seuil de couverture du moteur ;
+3. tests Vitest + seuil de couverture du moteur (seuil à partir de l'étape 1.1) ;
 4. tests de bout en bout (à partir de l'étape 2a.1) ;
-5. contrôle des licences des dépendances npm (DEC-029).
+5. contrôle des licences de toutes les dépendances npm avec `licensee` (DEC-029, DEC-044, DEC-045).
 
-**Bloquant** : la branche `main` est protégée ; une pull request ne peut pas être fusionnée si une vérification échoue.
+**`dependency-review`** (`.github/workflows/dependency-review.yml`), à chaque pull request : bloque l'ajout d'une dépendance avec une faille connue.
+
+Pas de lancement à chaque envoi de branche : une branche n'est envoyée qu'une fois, juste avant sa pull request (DEC-040).
+
+**Bloquant** : la branche `main` est protégée ; une pull request ne peut pas être fusionnée si l'une des deux vérifications échoue.
 
 ## 6. Recette manuelle
 

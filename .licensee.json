@@ -1,0 +1,21 @@
+{
+  "licenses": {
+    "spdx": [
+      "MIT",
+      "ISC",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "Apache-2.0",
+      "BlueOak-1.0.0",
+      "0BSD",
+      "CC0-1.0"
+    ]
+  },
+  "packages": {
+    "spdx-exceptions": "^2.5.0",
+    "spdx-expression-validate": "^2.0.0",
+    "spdx-ranges": "^2.1.1"
+  },
+  "ignore": [{ "prefix": "lightningcss" }],
+  "corrections": true
+}

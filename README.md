@@ -38,7 +38,7 @@ TypeScript · Phaser · Vite · Vitest · Playwright · ESLint · Prettier · No
 
 Il n'y a pas encore de jeu à lancer : pour l'instant, le dépôt contient le socle technique et le moteur de règles (en cours). Les instructions complètes arriveront dans `CONTRIBUTING.md` (phase 2a).
 
-**Prérequis** : [Node.js](https://nodejs.org/) 22.13 ou plus récent (npm est inclus).
+**Prérequis** : [Node.js](https://nodejs.org/) 24.13 ou plus récent (npm est inclus).
 
 ```
 npm install
@@ -53,6 +53,7 @@ Installe les outils du projet (à faire une fois, puis après chaque changement 
 | `npm run lint` | Cherche les erreurs probables avec ESLint |
 | `npm run format:check` | Vérifie la mise en forme avec Prettier, sans rien modifier |
 | `npm run format` | Met en forme tous les fichiers avec Prettier |
+| `npm run licenses:check` | Vérifie les licences des dépendances |
 
 ## Documentation
 

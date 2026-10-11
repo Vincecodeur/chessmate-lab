@@ -38,7 +38,6 @@ Aucune.
 
 - Option : figer le mode Manual dans les réglages VS Code (`"claudeCode.initialPermissionMode": "manual"`).
 - À vérifier à l'étape 2a.1 : Edge utilisable par Playwright dans la vérification automatique (Linux).
-- Passage à Node 24 : à décider au début de 2a.
 - Analyse ESLint avec informations de types (détecte par ex. les promesses non attendues) : à décider au début de 2a.
 - Incident résolu à l'étape 0.3 : un vieux npm 2.15.12 installé dans le dossier personnel de Vincent prenait la place du bon npm dans les scripts (npm cherche aussi les programmes dans les `node_modules` des dossiers parents). Supprimé. À retenir si un comportement étrange de npm réapparaît.
 

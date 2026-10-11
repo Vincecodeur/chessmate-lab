@@ -208,3 +208,45 @@
 - **Décision** : les fichiers Markdown (`*.md`) sont exclus de Prettier (`.prettierignore`) ; Prettier ne met en forme que le code et la configuration.
 - **Pourquoi** : éviter le reformatage des tableaux de documentation écrits à la main.
 - **Historique** : proposée par Claude à l'étape 0.3, acceptée par Vincent.
+
+## DEC-044 — Contrôle des licences npm avec `licensee`
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Contexte** : DEC-029 exige que la vérification automatique refuse une dépendance npm dont la licence est incompatible avec MIT.
+- **Décision** : l'outil `licensee` (dépendance de développement) contrôle **toutes** les dépendances installées, développement compris, avec `npm run licenses:check`, en local et dans la vérification automatique. Réglages dans `.licensee.json`.
+- **Licences autorisées** : MIT, ISC, BSD-2-Clause, BSD-3-Clause, Apache-2.0, BlueOak-1.0.0, 0BSD, CC0-1.0 — toutes permissives (réutilisation libre dans un projet MIT). Toute autre licence bloque, sauf exception ciblée (DEC-045).
+- **Limites** : l'outil se fie à la licence déclarée par chaque paquet dans son `package.json`, complétée par des corrections communautaires (`corrections: true`) ; il ne lit pas le texte des fichiers de licence. Une licence absente ou inconnue bloque.
+- **Pourquoi** : seul outil comparé qui contrôle toutes les dépendances, en local comme sur GitHub, maintenu et compatible avec notre version de Node.
+- **Alternatives écartées** : `actions/dependency-review-action` pour les licences (ne contrôle que les dépendances ajoutées par une pull request, jamais l'existant ; une licence non détectée ne bloque pas) ; `license-checker-rseidelsohn` (fin du paquet annoncée par son auteur ; la v5 exige Node ≥ 24 et npm ≥ 11, alors que le projet était encore en Node 22 au moment du choix).
+
+## DEC-045 — Exceptions de licence ciblées
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Décision** : une licence hors de la liste de DEC-044 n'est jamais autorisée pour tous les paquets ; elle est acceptée paquet par paquet, après examen, dans `.licensee.json`.
+- **Exceptions en vigueur**
+  - **`lightningcss` et ses variantes par système** (MPL-2.0), option `ignore` par préfixe : outil CSS installé avec Vite, pour le développement. La MPL-2.0 est un « copyleft faible » : l'obligation de republier sous MPL ne porte que sur les fichiers de la bibliothèque elle-même, s'ils sont modifiés. Nous l'utilisons sans modification.
+  - **`spdx-exceptions` (^2.5.0), `spdx-expression-validate` (^2.0.0), `spdx-ranges` (^2.1.1)** (CC-BY-3.0, seule ou avec MIT), option `packages` : sous-dépendances de `licensee` lui-même, pour le développement. CC-BY-3.0 est une licence Creative Commons pour des contenus (ici, des listes de données publiées par la Linux Foundation) : réutilisation libre en citant l'auteur, sans obligation de republier sous la même licence. Approuvées dans leur version majeure actuelle : une nouvelle version majeure sera réexaminée.
+- **Pourquoi** : une future dépendance sous l'une de ces licences sera signalée et examinée, au lieu de passer sans contrôle.
+- **Alternatives écartées** : autoriser MPL-2.0 et CC-BY-3.0 pour tous les paquets (plus simple, mais toute nouvelle dépendance sous ces licences passerait sans examen).
+- **Note** : lecture courante de ces licences, pas un avis juridique.
+
+## DEC-046 — Actions GitHub fixées par identifiant de commit
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Décision** : chaque action utilisée dans `.github/workflows/` est désignée par l'identifiant complet d'un commit, suivi d'un commentaire donnant sa version (ex. `actions/checkout@3d3c42e… # v7.0.1`). Dependabot met à jour l'identifiant et le commentaire chaque mois.
+- **Pourquoi** : une étiquette de version (`@v7`) peut être déplacée vers un autre code, par exemple si le dépôt de l'action est piraté ; selon la documentation GitHub, l'identifiant de commit complet est le seul moyen d'utiliser une version qui ne peut plus changer.
+- **Limite** : les alertes de faille Dependabot ne couvrent pas les actions fixées par identifiant de commit ; les mises à jour mensuelles, si.
+- **Alternatives écartées** : étiquette de version (lisible et mise à jour automatiquement, mais modifiable). Le réglage GitHub qui impose les identifiants de commit à toutes les actions n'est pas activé pour l'instant (décision de Vincent, étape 0.4).
+
+## DEC-047 — Déclencheurs et contenu de la vérification automatique
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Décision** : deux vérifications, toutes deux obligatoires pour fusionner dans `main` :
+  - **`verify`** (`.github/workflows/ci.yml`), sur chaque pull request et chaque envoi sur `main` : installation, Prettier, ESLint, TypeScript, tests avec couverture, licences ;
+  - **`dependency-review`** (`.github/workflows/dependency-review.yml`), sur chaque pull request : bloque une pull request qui ajoute une dépendance (production ou développement) avec une faille connue ; ses contrôles de licences sont désactivés (DEC-044).
+- **Pourquoi** : une branche n'est envoyée qu'une fois, juste avant sa pull request (DEC-040) ; lancer aussi la vérification à chaque envoi de branche la ferait tourner deux fois pour le même code. Le lancement sur `main` vérifie le résultat réel de chaque fusion. `dependency-review` bloque une faille *avant* la fusion, alors que les alertes Dependabot la signalent *après*.
+- **Alternatives écartées** : lancer `verify` à chaque envoi sur toute branche (lancements en double) ; alertes Dependabot seules pour les failles.
+- **Précise** DEC-017 (« à chaque envoi et pull request »).
+
+## DEC-048 — Passage à Node 24 LTS
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Décision** : Node 24 (version à support long, « LTS ») partout : poste de développement, vérification automatique (`node-version: 24`), `engines` à `>=24.13.0` dans `package.json`. npm passe en version 11.
+- **Pourquoi** : le support de Node 22 s'arrête en avril 2027 ; passage fait à la frontière des phases 0 et 1, comme le prévoit DEC-035 pour les mises à jour majeures, avant tout code du jeu. 24.13 est aussi la version minimale exigée par `licensee` sur la branche 24.
+- **Alternatives écartées** : rester en Node 22 jusqu'au début de la phase 2a (point ouvert jusqu'ici) — une montée de version de plus à gérer plus tard, alors que le poste était déjà en Node 24.
+- **Historique** : décision avancée à l'étape 0.4 (prévue au début de 2a).
