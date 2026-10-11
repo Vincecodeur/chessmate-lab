@@ -1,0 +1,3 @@
+# Fins de ligne : Git stocke tous les fichiers texte avec des fins de ligne Unix (LF),
+# quel que soit l'ordinateur. Évite des différences parasites entre Windows et le reste.
+* text=auto eol=lf

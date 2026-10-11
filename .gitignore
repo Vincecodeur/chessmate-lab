@@ -1,0 +1,24 @@
+# Dépendances installées par npm (recréées avec `npm install`)
+node_modules/
+
+# Versions compilées (recréées avec `npm run build`)
+dist/
+
+# Rapports de couverture de tests
+coverage/
+
+# Secrets et réglages locaux (ne jamais publier)
+.env
+.env.*
+
+# Journaux
+*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Réglages personnels de l'éditeur
+.vscode/*
+!.vscode/extensions.json
