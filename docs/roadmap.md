@@ -8,7 +8,7 @@
 
 | Phase | Contenu | Version publiée | Durée estimée |
 |---|---|---|---|
-| 0 | Mise en place : dépôt, cadrage, socle technique, vérification automatique | — | 2 à 3 semaines restantes |
+| 0 | Mise en place : dépôt, cadrage, socle technique, vérification automatique | — | ✅ Terminée (environ 4 h réelles) |
 | 1 | Moteur de règles complet et prouvé | — | 5 à 6 semaines |
 | 2a | Client, publication, partie jouable à 2 sur le même écran | **v0.1.0** (première version jouable) | 7 à 9 semaines |
 | 2b | Options de partie, confort, pendule, fins de partie, reprise | v0.2.0 | 5 à 7 semaines |
@@ -57,9 +57,9 @@ issue → branche etape/<n°>-<sujet> → plan validé par Vincent
 |---|---|---|---|
 | 0.1 | Dépôt GitHub public, licence MIT, README | Dépôt en ligne | ✅ |
 | 0.2 | Claude Code dans VS Code, mode Manual ; `CLAUDE.md` et fichiers de reprise | `/status` OK, mode Manual | ✅ |
-| 0.C | Cadrage complet (sessions 1 à 4), auto-évaluation, roadmap v1.1 | Docs commitées | ✅ (à la fusion du commit) |
-| 0.3 | Socle : workspaces npm, TypeScript strict, Vitest + mesure de couverture (sans seuil), ESLint, Prettier, `packages/engine` avec un test bidon ; scripts compatibles Windows et Linux. **Première étape sur branche + pull request** (fusionnée sans vérification automatique, qui n'existe pas encore) | `npm test`, vérification TypeScript, ESLint et Prettier passent en local sous PowerShell ; pull request fusionnée | |
-| 0.4 | Vérification automatique GitHub Actions (style, typage, tests) avec permissions minimales ; protection de `main` adaptée à un développeur seul (pas d'approbation exigée, règles appliquées aussi à l'administrateur, seule la fusion par commit de fusion autorisée) ; Dependabot (npm + GitHub Actions, mises à jour groupées, failles immédiates) ; contrôle des licences npm (outil choisi à cette étape) ; versions exactes dans `architecture.md` ; création de `built-with-claude.md` ; bilan de phase | Une pull request contenant volontairement un test qui échoue **ne peut pas** être fusionnée ; l'erreur corrigée, elle peut l'être | |
+| 0.C | Cadrage complet (sessions 1 à 4), auto-évaluation, roadmap v1.1 | Docs commitées | ✅ |
+| 0.3 | Socle : workspaces npm, TypeScript strict, Vitest + mesure de couverture (sans seuil), ESLint, Prettier, `packages/engine` avec un test bidon ; scripts compatibles Windows et Linux. **Première étape sur branche + pull request** (fusionnée sans vérification automatique, qui n'existe pas encore) | `npm test`, vérification TypeScript, ESLint et Prettier passent en local sous PowerShell ; pull request fusionnée | ✅ |
+| 0.4 | Vérification automatique GitHub Actions (style, typage, tests) avec permissions minimales ; protection de `main` adaptée à un développeur seul (pas d'approbation exigée, règles appliquées aussi à l'administrateur, seule la fusion par commit de fusion autorisée) ; Dependabot (npm + GitHub Actions, mises à jour groupées, failles immédiates) ; contrôle des licences npm (outil choisi à cette étape) ; versions exactes dans `architecture.md` ; création de `built-with-claude.md` ; bilan de phase | Une pull request contenant volontairement un test qui échoue **ne peut pas** être fusionnée ; l'erreur corrigée, elle peut l'être | ✅ (pull request #5) |
 
 ---
 
