@@ -2,6 +2,7 @@
   "name": "@chessmate-lab/engine",
   "version": "0.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "test": "vitest run",
