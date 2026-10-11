@@ -4,12 +4,18 @@ node_modules/
 # Versions compilées (recréées avec `npm run build`)
 dist/
 
-# Rapports de couverture de tests
+# Rapports de tests
 coverage/
+test-results/
+playwright-report/
+
+# Fichiers temporaires de TypeScript
+*.tsbuildinfo
 
 # Secrets et réglages locaux (ne jamais publier)
 .env
 .env.*
+!.env.example
 
 # Journaux
 *.log
