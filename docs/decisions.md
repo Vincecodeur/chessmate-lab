@@ -202,3 +202,9 @@
 ## DEC-042 — Hébergement étudié au début de la phase 4 ; v1.0.0 même sans hébergement
 - **Date** : 2026-10-11 — **Statut** : Acceptée
 - **Décision** : l'étude des hébergements gratuits est la première étape de la phase 4 (4.1). Sans hébergement gratuit, le mode en ligne n'est utilisable qu'en lançant aussi le client en local : un site publié en HTTPS (GitHub Pages) ne peut pas joindre un serveur local non sécurisé. v1.0.0 sort quand même, avec cette limite indiquée clairement.
+
+## DEC-043 — Markdown exclu de Prettier
+- **Date** : 2026-10-11 — **Statut** : Acceptée
+- **Décision** : les fichiers Markdown (`*.md`) sont exclus de Prettier (`.prettierignore`) ; Prettier ne met en forme que le code et la configuration.
+- **Pourquoi** : éviter le reformatage des tableaux de documentation écrits à la main.
+- **Historique** : proposée par Claude à l'étape 0.3, acceptée par Vincent.

@@ -46,10 +46,17 @@ chessmate-lab/
 ├── package.json               # Racine : workspaces npm, scripts communs
 ├── package-lock.json          # Versions exactes (commité)
 ├── tsconfig.base.json         # TypeScript strict, réglages communs
+├── eslint.config.js           # ESLint (typescript-eslint + eslint-config-prettier)
+├── .prettierrc.json           # Prettier : apostrophes simples, le reste par défaut
+├── .prettierignore            # Markdown exclu (DEC-043), package-lock.json
 ├── cspell.json                # Correcteur orthographique (anglais + français)
+├── .vscode/extensions.json    # Extensions VS Code recommandées (ESLint, Prettier)
 ├── docs/                      # Documents vivants (liste dans README)
 ├── packages/
 │   ├── engine/                # Phase 1 — règles
+│   │   ├── package.json       # @chessmate-lab/engine : scripts test, couverture, typage
+│   │   ├── tsconfig.json      # Hérite de tsconfig.base.json
+│   │   ├── vitest.config.ts   # Tests et mesure de couverture du moteur
 │   │   ├── src/
 │   │   └── tests/
 │   ├── client/                # Phase 2 (squelette en 2a.1)
@@ -84,7 +91,21 @@ chessmate-lab/
 | Dépendances | Dependabot | Alertes de failles, pull requests de mise à jour | DEC-035 |
 | Serveur (phase 4) | Node.js + WebSocket | Connexion permanente pour les coups en temps réel | |
 
-Les versions exactes sont fixées à l'installation et notées ici (étape 0.4 pour le socle, 2a.1 pour Vite, Phaser et Playwright). Aucune version n'est annoncée d'avance.
+Les versions exactes sont fixées à l'installation et notées ici (étape 0.3 pour le socle, 2a.1 pour Phaser et Playwright). Aucune version n'est annoncée d'avance.
+
+**Versions installées à l'étape 0.3** (source : `package-lock.json`) — Node.js ≥ 22.13.0 exigé (`engines`), poste de développement en 22.20.0, npm 10.9.3.
+
+| Paquet | Version | Remarque |
+|---|---|---|
+| `typescript` | 6.0.3 | Pas la 7 : `typescript-eslint` 8.71.1 exige TypeScript < 6.1 |
+| `vitest` | 5.0.3 | |
+| `@vitest/coverage-v8` | 5.0.3 | Toujours la même version que `vitest` |
+| `vite` | 8.3.4 | Installé automatiquement avec Vitest (non déclaré) |
+| `eslint` | 10.12.0 | |
+| `@eslint/js` | 10.0.1 | |
+| `typescript-eslint` | 8.71.1 | |
+| `eslint-config-prettier` | 10.1.8 | |
+| `prettier` | 3.9.10 | |
 
 ## 4. Moteur de règles (`engine`)
 
