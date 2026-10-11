@@ -24,6 +24,7 @@ TypeScript · Phaser · Vite · Vitest · Node.js
 
 ## Documentation
 
+- [État du projet](docs/project-status.md)
 - [Vision produit](docs/product-vision.md)
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
