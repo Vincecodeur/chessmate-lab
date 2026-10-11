@@ -37,8 +37,10 @@ Phase 4 : tests du serveur (Vitest) et tests de bout en bout à deux navigateurs
 | Outil | Rôle |
 |---|---|
 | TypeScript strict | Erreurs de types |
-| ESLint | Erreurs probables et mauvaises pratiques (ex. variable inutilisée, promesse non attendue) |
-| Prettier | Mise en forme automatique identique partout ; plus de débat sur les espaces |
+| ESLint | Erreurs probables et mauvaises pratiques (ex. variable inutilisée) |
+| Prettier | Mise en forme automatique identique partout ; plus de débat sur les espaces. Fichiers Markdown exclus (DEC-043) |
+
+Certaines erreurs (ex. promesse non attendue) ne sont détectables que par l'analyse ESLint **avec informations de types** (plus lente, configuration supplémentaire). Elle n'est pas activée : décision à prendre au début de la phase 2a, avec le premier code asynchrone.
 
 ## 5. Vérification automatique (GitHub Actions)
 

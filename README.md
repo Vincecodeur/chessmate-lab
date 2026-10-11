@@ -36,7 +36,23 @@ TypeScript · Phaser · Vite · Vitest · Playwright · ESLint · Prettier · No
 
 ## Lancer le projet
 
-Les instructions arriveront avec le socle technique (étape 0.3), puis dans `CONTRIBUTING.md`.
+Il n'y a pas encore de jeu à lancer : pour l'instant, le dépôt contient le socle technique et le moteur de règles (en cours). Les instructions complètes arriveront dans `CONTRIBUTING.md` (phase 2a).
+
+**Prérequis** : [Node.js](https://nodejs.org/) 22.13 ou plus récent (npm est inclus).
+
+```
+npm install
+```
+Installe les outils du projet (à faire une fois, puis après chaque changement de `package-lock.json`).
+
+| Commande | Rôle |
+|---|---|
+| `npm test` | Lance les tests |
+| `npm run test:coverage` | Lance les tests et mesure la couverture (rapport détaillé dans `packages/engine/coverage/index.html`) |
+| `npm run typecheck` | Vérifie les types TypeScript |
+| `npm run lint` | Cherche les erreurs probables avec ESLint |
+| `npm run format:check` | Vérifie la mise en forme avec Prettier, sans rien modifier |
+| `npm run format` | Met en forme tous les fichiers avec Prettier |
 
 ## Documentation
 

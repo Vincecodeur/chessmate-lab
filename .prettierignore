@@ -1,0 +1,5 @@
+# Documentation écrite à la main : pas de reformatage des tableaux (DEC-043)
+*.md
+
+# Généré par npm, jamais modifié à la main
+package-lock.json
