@@ -17,7 +17,7 @@ Liste détaillée : [`docs/features.md`](docs/features.md).
 
 ## Où en est le projet
 
-**Phase 0 — mise en place.** Le cadrage est terminé (vision, fonctionnalités, architecture, stratégie de tests, organisation) ; le code commence. La première version jouable (v0.1.0) sera publiée ici à la fin de la phase 2a.
+**Phase 0 terminée — phase 1 (moteur de règles) à venir.** Le cadrage est fait (vision, fonctionnalités, architecture, stratégie de tests, organisation) et le socle technique est en place, avec une vérification automatique obligatoire avant toute fusion. La première version jouable (v0.1.0) sera publiée ici à la fin de la phase 2a.
 
 - État détaillé : [`docs/project-status.md`](docs/project-status.md)
 - Étapes et versions prévues : [`docs/roadmap.md`](docs/roadmap.md)
@@ -28,7 +28,7 @@ Liste détaillée : [`docs/features.md`](docs/features.md).
 - **Un moteur de règles indépendant** de l'affichage, prouvé par des tests (dont le « perft », qui compte tous les coups possibles et les compare à des valeurs de référence).
 - **Tests à trois niveaux** (moteur, logique du jeu, parcours complets dans un navigateur), vérification automatique à chaque pull request, recette manuelle avant chaque version.
 - **Une étape = une issue, une branche, une pull request**, avec des commits séparés pour la configuration, les tests, le code et la documentation.
-- **Avec Claude, sous contrôle** : Claude propose un plan, Vincent valide ; aucune initiative sans accord ([`CLAUDE.md`](CLAUDE.md)). Le récit de ce qui a marché — et des erreurs de l'IA — sera tenu dans `docs/built-with-claude.md`.
+- **Avec Claude, sous contrôle** : Claude propose un plan, Vincent valide ; aucune initiative sans accord ([`CLAUDE.md`](CLAUDE.md)). Le récit de ce qui a marché — et des erreurs de l'IA — est tenu dans [`docs/built-with-claude.md`](docs/built-with-claude.md).
 
 ## Technologies
 
@@ -72,6 +72,7 @@ Installe les outils du projet (à faire une fois, puis après chaque changement 
 | [Risques](docs/risks.md) | Risques et plans B |
 | [Crédits](docs/credits.md) | Registre des images, sons, polices et licences |
 | [Apprentissage](docs/learning-log.md) | Objectifs d'apprentissage et bilans de phase |
+| [Construit avec Claude](docs/built-with-claude.md) | Méthode, erreurs de l'IA et leçons, phase par phase |
 | [Idées pour plus tard](docs/post-mvp-backlog.md) | Hors périmètre actuel |
 | [Message de reprise](docs/handoff-prompt.md) | Reprendre le projet dans une nouvelle conversation |
 
