@@ -9,8 +9,8 @@
 | | |
 |---|---|
 | Phase en cours | **0 — Mise en place** |
-| Dernière étape terminée | **0.2** — Claude Code installé dans VS Code, connecté, mode Manual |
-| Prochaine étape | **0.3** — Workspaces npm, TypeScript strict, Vitest, un test bidon (`npm test` vert) |
+| Dernière étape terminée | **0.C** — Cadrage complet, auto-évaluation, roadmap v1.1 |
+| Prochaine étape | **0.3** — Socle : workspaces npm, TypeScript strict, Vitest + mesure de couverture, ESLint, Prettier, test bidon ; première étape sur branche + pull request |
 | Lancement | Uniquement sur « forward » de Vincent |
 
 ## Historique des étapes
@@ -18,26 +18,24 @@
 | Étape | Statut | Commits | Notes |
 |---|---|---|---|
 | 0.1 Dépôt GitHub, licence, README | Terminée | `99c5bb1`, `abea592` | Licence MIT (DEC-011) |
-| — Correcteur orthographique | Terminée | `41d0937` | Hors roadmap : `cspell.json` (anglais + français) |
-| 0.2 Claude Code dans VS Code | Terminée | — (aucun fichier) | Version 2.1.296, mode Manual |
-| — `CLAUDE.md` + fichiers de reprise | En attente de commit | — | Avancé depuis l'étape 0.5 (décision Vincent) |
+| — Correcteur orthographique | Terminée | `41d0937` | `cspell.json` (anglais + français) |
+| 0.2 Claude Code dans VS Code | Terminée | — | Version 2.1.296, mode Manual |
+| — `CLAUDE.md` + fichiers de reprise | Terminée | `9b318b5` | |
+| 0.C Cadrage + auto-évaluation + roadmap v1.1 | Terminée | commit de documentation du 2026-10-11 (dernier commit direct sur `main`) | DEC-012 à DEC-042 ; 11 nouveaux documents |
 
 ## Décisions en attente de validation
 
-DEC-004 (moteur indépendant de Phaser), DEC-005 (plateau 8×8), DEC-006 (nouvel état à chaque coup), DEC-010 (Vitest) — statut « Proposée » dans `decisions.md`.
+Aucune.
 
 ## Écarts avec la roadmap
 
-- `CLAUDE.md` créé à l'étape 0.2 au lieu de 0.5 → mettre `roadmap.md` à jour à l'étape 0.5.
-- `cspell.json` ajouté hors roadmap.
+Aucun.
 
 ## Points ouverts
 
-- Versions exactes des outils (Node.js, TypeScript, Vite, Phaser, Vitest, Claude Code) à noter dans `architecture.md` à l'étape 0.5.
 - Option : figer le mode Manual dans les réglages VS Code (`"claudeCode.initialPermissionMode": "manual"`).
+- À vérifier à l'étape 2a.1 : Edge utilisable par Playwright dans la vérification automatique (Linux).
 
 ## Organisation du travail
 
-- **Claude Code (VS Code)** : exécute les étapes, en mode Plan puis Manual.
-- **Cowork** : prépare les messages pour Claude Code, relit son travail par rapport aux docs et à la méthode.
-- **Vincent** : valide chaque plan et chaque modification, lance les commits et les push.
+Voir `release-process.md` §1 (rôles de Vincent, Claude Code et Cowork).

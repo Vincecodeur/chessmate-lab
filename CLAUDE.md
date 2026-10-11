@@ -3,7 +3,7 @@
 Projet d'apprentissage : un jeu d'échecs en TypeScript (Phaser côté affichage, Node.js côté serveur).
 Vincent apprend le développement de jeu ET le travail avec Claude. Comprendre compte plus qu'aller vite.
 
-Avant toute action, lire : `docs/project-status.md` (en premier : où en est le projet), puis `docs/product-vision.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/decisions.md`.
+Avant toute action, lire : `docs/project-status.md` (en premier : où en est le projet), puis `docs/roadmap.md`, `docs/decisions.md`, `docs/architecture.md`, `docs/product-vision.md`. Les autres documents sont listés dans `README.md` : lire ceux qui concernent l'étape en cours.
 
 ## Règle n°1 — Aucune initiative sans validation
 
@@ -34,13 +34,17 @@ Avant toute action, lire : `docs/project-status.md` (en premier : où en est le 
 ## Règles techniques
 
 - `packages/engine` n'importe jamais Phaser, ni `client`, ni `server` (DEC-004).
-- TypeScript en mode strict. Tests avec Vitest.
+- TypeScript en mode strict. Tests : Vitest (moteur, logique client), Playwright (bout en bout). ESLint + Prettier. Voir `docs/test-strategy.md`.
+- Logique du client écrite hors des scènes Phaser, pour être testable sans affichage (DEC-016).
 - Aucune installation de dépendance sans validation explicite.
 - Code et noms (variables, fonctions, fichiers) en anglais. Réponses à Vincent en français.
+- Aucun texte affiché au joueur écrit en dur : tout passe par les fichiers de traduction français / anglais (DEC-026).
+- Toute image, son, musique ou police ajoutée = une ligne dans `docs/credits.md`, dans le même commit (DEC-029).
 
 ## Environnement
 
 - Windows, terminal **PowerShell** dans VS Code. Toute commande proposée doit fonctionner dans PowerShell (pas de syntaxe Linux comme `rm -rf`, `export`, `&&` non garanti).
+- Les scripts npm doivent fonctionner à la fois sous Windows (poste de Vincent) et sous Linux (vérification automatique GitHub) : pas de commande propre à un système dans `package.json`.
 
 ## Contraintes du projet
 
@@ -49,8 +53,11 @@ Avant toute action, lire : `docs/project-status.md` (en premier : où en est le 
 
 ## Git
 
-- Ne jamais lancer `git commit` ni `git push` : proposer les commandes et le message de commit, Vincent les exécute.
-- 1 étape = 1 commit. Ne jamais mélanger dans un même commit : code, tests, documentation.
+- Ne jamais lancer `git commit`, `git push`, fusionner, ni aucune commande qui modifie GitHub : proposer les commandes, les messages de commit et le texte des issues / pull requests ; Vincent les exécute.
+- 1 étape = 1 issue + 1 branche `etape/<numéro>-<sujet>` + 1 pull request (voir `docs/release-process.md`).
+- **Tests d'abord** : commit des tests (qui échouent), puis commit du code (DEC-040). La branche n'est envoyée sur GitHub qu'en fin d'étape.
+- Quatre types de commits jamais mélangés : config, tests, code, docs (DEC-041). Étape triviale : un seul commit, à justifier.
+- Relire chaque pull request à la demande de Vincent : écarts avec les docs, tests manquants, risques.
 - Avant chaque commit : signaler ce qui est obsolète, manquant ou contradictoire dans `docs/`.
 
 ## Reprise et passation
