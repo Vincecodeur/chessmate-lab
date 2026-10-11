@@ -49,6 +49,7 @@ chessmate-lab/
 ├── eslint.config.js           # ESLint (typescript-eslint + eslint-config-prettier)
 ├── .prettierrc.json           # Prettier : apostrophes simples, le reste par défaut
 ├── .prettierignore            # Markdown exclu (DEC-043), package-lock.json
+├── .licensee.json             # Licences npm autorisées et exceptions ciblées (DEC-044, DEC-045)
 ├── cspell.json                # Correcteur orthographique (anglais + français)
 ├── .vscode/extensions.json    # Extensions VS Code recommandées (ESLint, Prettier)
 ├── docs/                      # Documents vivants (liste dans README)
@@ -71,7 +72,7 @@ chessmate-lab/
 │       └── tests/
 ├── e2e/                       # Tests de bout en bout (Playwright)
 └── .github/
-    ├── workflows/             # Vérification automatique, publication par version
+    ├── workflows/             # Vérification automatique (ci.yml, dependency-review.yml), publication par version (2a.2)
     ├── ISSUE_TEMPLATE/        # Modèles « bug » et « idée »
     └── dependabot.yml         # Mises à jour des dépendances
 ```
@@ -86,14 +87,15 @@ chessmate-lab/
 | Tests (moteur, logique, serveur) | Vitest + mesure de couverture | Équivalent TypeScript de pytest | DEC-010, DEC-016 |
 | Tests de bout en bout | Playwright | Navigateur automatique (Chrome / Edge) | DEC-016, DEC-027 |
 | Style | ESLint + Prettier | Erreurs probables + mise en forme automatique | DEC-017 |
-| Vérification automatique | GitHub Actions | Style, typage, tests, couverture, licences, à chaque envoi et pull request | DEC-017, DEC-029 |
+| Vérification automatique | GitHub Actions | Style, typage, tests, couverture, licences, failles des dépendances ajoutées ; à chaque pull request et envoi sur `main` | DEC-017, DEC-029, DEC-047 |
+| Licences des dépendances | `licensee` | Refuse une dépendance npm dont la licence n'est pas autorisée | DEC-044, DEC-045 |
 | Publication | GitHub Pages | Mise en ligne à chaque version | DEC-018 |
 | Dépendances | Dependabot | Alertes de failles, pull requests de mise à jour | DEC-035 |
 | Serveur (phase 4) | Node.js + WebSocket | Connexion permanente pour les coups en temps réel | |
 
 Les versions exactes sont fixées à l'installation et notées ici (étape 0.3 pour le socle, 2a.1 pour Phaser et Playwright). Aucune version n'est annoncée d'avance.
 
-**Versions installées à l'étape 0.3** (source : `package-lock.json`) — Node.js ≥ 22.13.0 exigé (`engines`), poste de développement en 22.20.0, npm 10.9.3.
+**Versions installées** (source : `package-lock.json`) — depuis l'étape 0.4 : Node.js ≥ 24.13.0 exigé (`engines`, DEC-048), poste de développement en 24.21.0, npm 11.19.0 ; vérification automatique en Node 24 (dernière version 24 disponible). Étape 0.3 : Node 22.20.0, npm 10.9.3.
 
 | Paquet | Version | Remarque |
 |---|---|---|
@@ -106,6 +108,15 @@ Les versions exactes sont fixées à l'installation et notées ici (étape 0.3 p
 | `typescript-eslint` | 8.71.1 | |
 | `eslint-config-prettier` | 10.1.8 | |
 | `prettier` | 3.9.10 | |
+| `licensee` | 12.0.2 | Étape 0.4 ; exige Node ≥ 24.13 sur la branche 24 |
+
+**Actions GitHub** (étape 0.4 ; fixées par identifiant de commit, DEC-046 — l'identifiant exact est dans les fichiers de `.github/workflows/`)
+
+| Action | Version |
+|---|---|
+| `actions/checkout` | 7.0.1 |
+| `actions/setup-node` | 7.1.0 |
+| `actions/dependency-review-action` | 5.0.0 |
 
 ## 4. Moteur de règles (`engine`)
 
